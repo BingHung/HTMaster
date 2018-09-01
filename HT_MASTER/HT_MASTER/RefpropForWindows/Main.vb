@@ -21,17 +21,16 @@
         'Dim Fluid_Prop As New Fluid(Fluid_Type, "SI", "TP")
         'Fluid_Prop.Properties(Fluid_Temperature + 273.15, Fluid_Pressure / 1000)
 
-        Dim Fluid_Prop As New Fluid(Fluid_Type, "SI", "TP")
+        Dim Fluid_Prop As New Fluid(Fluid_Type.ToString, "SI", "TP")
         Fluid_Prop.Properties(Fluid_Temperature + 273.15, Fluid_Pressure / 1000)
 
-
-        'MsgBox(Fluid_Prop.i)
-        'MsgBox(Fluid_Prop.rho)
 
         Dim row1 As DataRow = TableContent.NewRow()
         row1("Temperature (oC)") = Fluid_Temperature
         row1("Pressure (kPa)") = Fluid_Pressure
         row1("Enthalpy (kJ/kg)") = Math.Round(CDbl(Fluid_Prop.i), 3) / 1000
+        'Enthalpy(name, "TP", "SI", T, P)
+        'row1("Enthalpy (kJ/kg)") = Math.Round(Enthalpy(Fluid_Type, "TP", "SI", Fluid_Temperature + 273.15, Fluid_Pressure / 1000), 3)
         row1("Density (kg/m^3)") = Math.Round(CDbl(Fluid_Prop.rho), 3)
         row1("Viscosity (Pa*s)") = CDbl(Fluid_Prop.Visc)
         row1("Thermal Conductivity (W/m*K)") = Math.Round(CDbl(Fluid_Prop.k), 3)

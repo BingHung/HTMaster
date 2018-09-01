@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RefpropForWindows", "RefpropForWindows\RefpropForWindows.vbproj", "{6AA6933C-6D44-4743-877E-64338F24593A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AD18226-8119-4D64-9463-C21EB5902147}"
+	ProjectSection(SolutionItems) = preProject
+		RefpropForWindows\bin\Debug\refprop.dll = RefpropForWindows\bin\Debug\refprop.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5525A365-DD5F-4950-90A5-0473CEB86A75}
 	EndGlobalSection
 EndGlobal
