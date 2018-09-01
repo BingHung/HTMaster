@@ -1,0 +1,12 @@
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\bin\Debug\HT_Master.exe.config
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\bin\Debug\HT_Master.exe
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\bin\Debug\HT_Master.pdb
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\bin\Debug\HT_Master.xml
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.Resources.resources
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.vbproj.GenerateResource.cache
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.vbproj.CoreCompileInputs.cache
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.exe
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.xml
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.pdb
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.Main.resources
+C:\Users\BingHung\source\repos\HT_Master\HT_Master\obj\Debug\HT_Master.vbprojAssemblyReference.cache
