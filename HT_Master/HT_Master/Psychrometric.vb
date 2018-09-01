@@ -1,0 +1,338 @@
+﻿Module Psychrometric
+
+    Public Structure MoistAirProperties
+
+        Public Patm, Ra As Double
+        Public RH, DBT, Ps, Pv As Double
+        Public Dew, W, rhoai, iai As Double
+        Public Cpa, Visca, Pra As Double
+        Public WBT As Double
+
+    End Structure
+
+    Function W_DBT_get_RH(ByVal W As Double, ByVal DBT As Double) As Double
+        '# Initial Set up 
+        Dim MoistAirProperty As New MoistAirProperties
+
+        'Dim Patm, Ra As Double
+
+        ' [ Patm ] Abosulte Pressure (kPa)
+        ' [ Ra ] gas constant (J/kg.K)
+
+        MoistAirProperty.Patm = 101.325
+        MoistAirProperty.Ra = 287.055
+
+        'Dim RH, DBT, Ps, Pv As Double
+
+        ' [ RH ] Relative Humidity (%)
+        ' [ DBT ] Dry Ball Temperature (oC)
+        ' [ Ps ] Sat Pressure of water , in DBT (kPa) 
+        ' [ Pv ] Vapor Pressure (kPa)
+
+        'MoistAirProperty.RH = RH / 100
+        MoistAirProperty.DBT = DBT - 273.15
+
+
+
+        Dim SatWater As New Fluid("water", "si", "tp")
+        SatWater.SatProp((MoistAirProperty.DBT) + 273.15)
+
+        MoistAirProperty.Ps = SatWater.P * 1000
+        'Console.WriteLine("Sat Pressure : {0} kPa ", MoistAirProperty.Ps)
+        'Console.WriteLine("Vap Pressure : {0} kPa ", MoistAirProperty.Pv)
+
+        'Dim Dew, W, rhoai, iai As Double
+
+        ' [ W ] Humidity Ratio (kg/kg dry air)  //6-7
+        ' [ Dew ] Dew Point Temperature (oC)    //6-12
+        ' [ rhoai ]                   (kg/m^3)  //6-16
+        ' [ iai ]                     (kJ/kg)   //6-20
+
+        MoistAirProperty.W = W
+        MoistAirProperty.Pv = MoistAirProperty.W * MoistAirProperty.Patm / (0.62198 + MoistAirProperty.W)
+        MoistAirProperty.RH = MoistAirProperty.Pv / MoistAirProperty.Ps
+        Return MoistAirProperty.RH
+
+    End Function
+
+    Function RH_DBT_get_W(ByVal RH As Double, ByVal DBT As Double) As Double
+        '# Initial Set up 
+        Dim MoistAirProperty As New MoistAirProperties
+
+        'Dim Patm, Ra As Double
+
+        ' [ Patm ] Abosulte Pressure (kPa)
+        ' [ Ra ] gas constant (J/kg.K)
+
+        MoistAirProperty.Patm = 101.325
+        MoistAirProperty.Ra = 287.055
+
+        'Dim RH, DBT, Ps, Pv As Double
+
+        ' [ RH ] Relative Humidity (%)
+        ' [ DBT ] Dry Ball Temperature (oC)
+        ' [ Ps ] Sat Pressure of water , in DBT (kPa) 
+        ' [ Pv ] Vapor Pressure (kPa)
+
+        MoistAirProperty.RH = RH / 100
+        MoistAirProperty.DBT = DBT - 273.15
+
+        'Console.Write("Please Enter Dry Ball Temerature (oC) :  ")
+        'MoistAirProperty.RH = Console.ReadLine()
+        'Console.Write("Please Enter Moist Air Relative Humidity :  ")
+        'MoistAirProperty.DBT = Console.ReadLine()
+
+
+        Dim SatWater As New Fluid("water", "si", "tp")
+        SatWater.SatProp((MoistAirProperty.DBT) + 273.15)
+
+        MoistAirProperty.Ps = SatWater.P * 1000
+        'Console.WriteLine("Sat Pressure : {0} kPa ", MoistAirProperty.Ps)
+
+        MoistAirProperty.Pv = MoistAirProperty.Ps * MoistAirProperty.RH
+        'Console.WriteLine("Vap Pressure : {0} kPa ", MoistAirProperty.Pv)
+
+        'Dim Dew, W, rhoai, iai As Double
+
+        ' [ W ] Humidity Ratio (kg/kg dry air)  //6-7
+        ' [ Dew ] Dew Point Temperature (oC)    //6-12
+        ' [ rhoai ]                   (kg/m^3)  //6-16
+        ' [ iai ]                     (kJ/kg)   //6-20
+
+        MoistAirProperty.W = 0.62198 * MoistAirProperty.Pv / (MoistAirProperty.Patm - MoistAirProperty.Pv)
+        Return MoistAirProperty.W
+
+    End Function
+
+    Sub MoistAir_Complete()
+        '# Initial Set up 
+
+        Dim MoistAirProperty As New MoistAirProperties
+
+        'Dim Patm, Ra As Double
+
+        ' [ Patm ] Abosulte Pressure (kPa)
+        ' [ Ra ] gas constant (J/kg.K)
+
+        MoistAirProperty.Patm = 101.325
+        MoistAirProperty.Ra = 287.055
+
+        'Dim RH, DBT, Ps, Pv As Double
+
+        ' [ RH ] Relative Humidity (%)
+        ' [ DBT ] Dry Ball Temperature (oC)
+        ' [ Ps ] Sat Pressure of water , in DBT (kPa) 
+        ' [ Pv ] Vapor Pressure (kPa)
+
+        MoistAirProperty.RH = 70 / 100
+        MoistAirProperty.DBT = 20
+
+        'Console.Write("Please Enter Dry Ball Temerature (oC) :  ")
+        'MoistAirProperty.RH = Console.ReadLine()
+        'Console.Write("Please Enter Moist Air Relative Humidity :  ")
+        'MoistAirProperty.DBT = Console.ReadLine()
+
+
+        Dim SatWater As New Fluid("water", "si", "tp")
+        SatWater.SatProp((MoistAirProperty.DBT) + 273.15)
+
+        MoistAirProperty.Ps = SatWater.P * 1000
+        'Console.WriteLine("Sat Pressure : {0} kPa ", MoistAirProperty.Ps)
+
+        MoistAirProperty.Pv = MoistAirProperty.Ps * MoistAirProperty.RH
+        'Console.WriteLine("Vap Pressure : {0} kPa ", MoistAirProperty.Pv)
+
+        'Dim Dew, W, rhoai, iai As Double
+        Dim a As Double
+
+        ' [ W ] Humidity Ratio (kg/kg dry air)  //6-7
+        ' [ Dew ] Dew Point Temperature (oC)    //6-12
+        ' [ rhoai ]                   (kg/m^3)  //6-16
+        ' [ iai ]                     (kJ/kg)   //6-20
+
+        MoistAirProperty.W = 0.62198 * MoistAirProperty.Pv / (MoistAirProperty.Patm - MoistAirProperty.Pv)
+        Console.WriteLine("Humidity Ratio  : {0} (kg/kg dry air) ", MoistAirProperty.W)
+
+        a = Math.Log(MoistAirProperty.Pv)
+        MoistAirProperty.Dew = 6.54 + 14.526 * a + 0.7398 * a ^ 2 + 0.09486 * a ^ 3 + 0.4569 * MoistAirProperty.Pv ^ 0.1984
+        Console.WriteLine("Dew Point Temperature  : {0} (oC) ", MoistAirProperty.Dew)
+
+        MoistAirProperty.rhoai = MoistAirProperty.Patm * 1000 / (MoistAirProperty.Ra * ((MoistAirProperty.DBT) + 273.15) * (1 + 1.6078 * MoistAirProperty.W))
+        Console.WriteLine("rhoai  : {0} (kg/m^3) ", MoistAirProperty.rhoai)
+
+        MoistAirProperty.iai = 1.006 * MoistAirProperty.DBT + MoistAirProperty.W * (2501 + 1.805 * MoistAirProperty.DBT)
+        Console.WriteLine("iai  : {0} (kJ/kg) ", MoistAirProperty.iai)
+
+
+
+        'Dim Cpa, Visca, Pra As Double
+
+        Dim Air As New Fluid("air", "si", "tp")
+        Air.Properties((MoistAirProperty.DBT) + 273.15, 0.101325)
+
+        MoistAirProperty.Cpa = Air.cp        'J/kg.K
+        MoistAirProperty.Visca = Air.Visc    'N.s/m^2
+        MoistAirProperty.Pra = Air.Pr        'X
+
+        Console.WriteLine("Cpa : {0} ; Visca : {1} ; Pra : {2}", MoistAirProperty.Cpa, MoistAirProperty.Visca, MoistAirProperty.Pra)
+
+        '# WBT iteration => To get WBT
+
+        Dim WBT As Double
+        Dim W2, Pg2, hfg2, hf2 As Double
+        Dim W1, hg1 As Double
+        Dim L, R As Double
+        R = (MoistAirProperty.DBT) + 273.15
+        L = 273.15
+        WBT = (R + L) / 2
+
+        While (1)
+
+            hg1 = SatWater.iG / 1000        'kJ/kg
+
+            'WBT = 30
+
+            Dim WBSatWater As New Fluid("water.FLD", "si", "tp")
+            WBSatWater.SatProp(WBT)
+
+            WBT = (WBT) - 273.15
+            Pg2 = WBSatWater.P * 1000       'kPa
+            W2 = 0.62198 * Pg2 / (MoistAirProperty.Patm - Pg2)
+            hfg2 = WBSatWater.ifg / 1000    'kJ/kg
+            hf2 = WBSatWater.iL / 1000      'kJ/kg
+
+
+            W1 = (MoistAirProperty.Cpa / 1000 * (WBT - MoistAirProperty.DBT) + W2 * hfg2) / (hg1 - hf2)
+
+
+            If Math.Abs(MoistAirProperty.W - W1) < 0.0001 Then
+                Console.WriteLine("WBT : {0}", WBT)
+                Exit While
+            ElseIf (MoistAirProperty.W - W1) > 0.0001 Then
+                L = (WBT) + 273.15
+                WBT = (R + L) / 2
+            ElseIf (W1 - MoistAirProperty.W) > 0.0001 Then
+                R = (WBT) + 273.15
+                WBT = (R + L) / 2
+            End If
+        End While
+    End Sub
+
+
+    Function MoistAir_Calc(ByRef MoistAirProperty As MoistAirProperties) As Double
+        '# Initial Set up 
+
+        'Dim MoistAirProperty As New MoistAirProperties
+
+        'Dim Patm, Ra As Double
+
+        ' [ Patm ] Abosulte Pressure (kPa)
+        ' [ Ra ] gas constant (J/kg.K)
+
+        MoistAirProperty.Patm = 101.325
+        MoistAirProperty.Ra = 287.055
+
+        'Dim RH, DBT, Ps, Pv As Double
+
+        ' [ RH ] Relative Humidity (%)
+        ' [ DBT ] Dry Ball Temperature (oC)
+        ' [ Ps ] Sat Pressure of water , in DBT (kPa) 
+        ' [ Pv ] Vapor Pressure (kPa)
+
+        'MoistAirProperty.RH = 70 / 100
+        'MoistAirProperty.DBT = 20
+
+        'Console.Write("Please Enter Dry Ball Temerature (oC) :  ")
+        'MoistAirProperty.RH = Console.ReadLine()
+        'Console.Write("Please Enter Moist Air Relative Humidity :  ")
+        'MoistAirProperty.DBT = Console.ReadLine()
+
+
+        Dim SatWater As New Fluid("water", "si", "tp")
+        SatWater.SatProp((MoistAirProperty.DBT) + 273.15)
+
+        MoistAirProperty.Ps = SatWater.p * 1000
+        'Console.WriteLine("Sat Pressure : {0} kPa ", MoistAirProperty.Ps)
+
+        MoistAirProperty.Pv = MoistAirProperty.Ps * MoistAirProperty.RH
+        'Console.WriteLine("Vap Pressure : {0} kPa ", MoistAirProperty.Pv)
+
+        'Dim Dew, W, rhoai, iai As Double
+        Dim a As Double
+
+        ' [ W ] Humidity Ratio (kg/kg dry air)  //6-7
+        ' [ Dew ] Dew Point Temperature (oC)    //6-12
+        ' [ rhoai ]                   (kg/m^3)  //6-16
+        ' [ iai ]                     (kJ/kg)   //6-20
+
+        MoistAirProperty.W = 0.62198 * MoistAirProperty.Pv / (MoistAirProperty.Patm - MoistAirProperty.Pv)
+        Console.WriteLine("Humidity Ratio  : {0} (kg/kg dry air) ", MoistAirProperty.W)
+
+        a = Math.Log(MoistAirProperty.Pv)
+        MoistAirProperty.Dew = 6.54 + 14.526 * a + 0.7398 * a ^ 2 + 0.09486 * a ^ 3 + 0.4569 * MoistAirProperty.Pv ^ 0.1984
+        Console.WriteLine("Dew Point Temperature  : {0} (oC) ", MoistAirProperty.Dew)
+
+        MoistAirProperty.rhoai = MoistAirProperty.Patm * 1000 / (MoistAirProperty.Ra * ((MoistAirProperty.DBT) + 273.15) * (1 + 1.6078 * MoistAirProperty.W))
+        Console.WriteLine("rhoai  : {0} (kg/m^3) ", MoistAirProperty.rhoai)
+
+        MoistAirProperty.iai = 1.006 * MoistAirProperty.DBT + MoistAirProperty.W * (2501 + 1.805 * MoistAirProperty.DBT)
+        Console.WriteLine("iai  : {0} (kJ/kg) ", MoistAirProperty.iai)
+
+
+
+        'Dim Cpa, Visca, Pra As Double
+
+        Dim Air As New Fluid("air", "si", "tp")
+        Air.Properties((MoistAirProperty.DBT) + 273.15, 0.101325)
+
+        MoistAirProperty.Cpa = Air.cp        'J/kg.K
+        MoistAirProperty.Visca = Air.Visc    'N.s/m^2
+        MoistAirProperty.Pra = Air.Pr        'X
+
+        Console.WriteLine("Cpa : {0} ; Visca : {1} ; Pra : {2}", MoistAirProperty.Cpa, MoistAirProperty.Visca, MoistAirProperty.Pra)
+
+        '# WBT iteration => To get WBT
+
+        Dim WBT As Double
+        Dim W2, Pg2, hfg2, hf2 As Double
+        Dim W1, hg1 As Double
+        Dim L, R As Double
+        R = (MoistAirProperty.DBT) + 273.15
+        L = 273.15
+        WBT = (R + L) / 2
+
+        While (1)
+
+            hg1 = SatWater.iG / 1000        'kJ/kg
+
+            'WBT = 30
+
+            Dim WBSatWater As New Fluid("water.FLD", "si", "tp")
+            WBSatWater.SatProp(WBT)
+
+            WBT = (WBT) - 273.15
+            Pg2 = WBSatWater.p * 1000       'kPa
+            W2 = 0.62198 * Pg2 / (MoistAirProperty.Patm - Pg2)
+            hfg2 = WBSatWater.ifg / 1000    'kJ/kg
+            hf2 = WBSatWater.iL / 1000      'kJ/kg
+
+
+            W1 = (MoistAirProperty.Cpa / 1000 * (WBT - MoistAirProperty.DBT) + W2 * hfg2) / (hg1 - hf2)
+
+
+            If Math.Abs(MoistAirProperty.W - W1) < 0.0001 Then
+                Console.WriteLine("WBT : {0}", WBT)
+                Exit While
+            ElseIf (MoistAirProperty.W - W1) > 0.0001 Then
+                L = (WBT) + 273.15
+                WBT = (R + L) / 2
+            ElseIf (W1 - MoistAirProperty.W) > 0.0001 Then
+                R = (WBT) + 273.15
+                WBT = (R + L) / 2
+            End If
+        End While
+        Return 0
+    End Function
+
+
+End Module

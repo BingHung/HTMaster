@@ -22,5 +22,10 @@ HT_Master
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:HT_Master.My.Resources.Resources.Psychrometric_Chart">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

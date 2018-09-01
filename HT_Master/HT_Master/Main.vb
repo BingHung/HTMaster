@@ -53,4 +53,17 @@
         'Me.Pr = Prandtl(Name, "TP", "SI", t, p) ' [dimensionless]
 
     End Sub
+
+    Private Sub Get_PsyProperties_Click(sender As Object, e As EventArgs) Handles Get_PsyProperties.Click
+        Dim Psychrimetric As New MoistAirProperties
+        Psychrimetric.DBT = CDbl(Tdb_txt.Text) '(oC)
+        Psychrimetric.RH = CDbl(RH_txt.Text) / 100 '(%)
+
+        MoistAir_Calc(Psychrimetric)
+
+        Tdp_txt.Text = Psychrimetric.Dew.ToString("0.###")
+        h_txt.Text = Psychrimetric.iai.ToString("0.###")
+        W_txt.Text = Psychrimetric.W.ToString("0.###")
+        rho_txt.Text = Psychrimetric.rhoai.ToString("0.###")
+    End Sub
 End Class

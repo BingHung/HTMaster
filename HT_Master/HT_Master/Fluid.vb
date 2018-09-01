@@ -3,7 +3,7 @@ Public Class Fluid
     Public name, units, inputCode As String
     ' Public info As String()
     Public Tcrit, Pcrit, rhoCrit, Ttriple, x, rho, Visc, k, Pr, cp, i As Double
-    Public iL, iG, ism, ifg, CpL, CpG, rhoL, rhoG, rhom, viscL, viscG, viscm, kL, kG, km, PrL, PrG, Prm, SurfTL As Double 'Sat Prop
+    Public iL, iG, ism, ifg, CpL, CpG, rhoL, rhoG, rhom, viscL, viscG, viscm, kL, kG, km, PrL, PrG, Prm, SurfTL, P As Double 'Sat Prop
 
 
     Public Sub New(ByVal name As String, ByVal units As String, ByVal inputCode As String)
@@ -59,6 +59,7 @@ Public Class Fluid
         PrG = Prandtl(name, "Tvap", "SI", Tsat)                     '[dimensionless]
         Prm = (PrL + PrG) / 2
         SurfTL = SurfaceTension(name, "Tliq", "SI", Tsat) / 1000      '{N/m}     
+        p = Pressure(name, "Tliq", "SI", Tsat)                       'MPa
     End Sub
     Sub Sat_iG(ByVal Tsat As Double)
         iG = Enthalpy(name, "Tvap", "SI", Tsat) * 1000

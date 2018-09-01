@@ -25,8 +25,7 @@ Partial Class Main
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.PropertiesTable = New System.Windows.Forms.DataGridView()
+        Me.GetProperties = New System.Windows.Forms.Button()
         Me.Sat_iV = New System.Windows.Forms.TextBox()
         Me.Sat_iL = New System.Windows.Forms.TextBox()
         Me.Sat_T = New System.Windows.Forms.TextBox()
@@ -43,13 +42,30 @@ Partial Class Main
         Me.Label2 = New System.Windows.Forms.Label()
         Me.T_Fluid = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GetProperties = New System.Windows.Forms.Button()
+        Me.PropertiesTable = New System.Windows.Forms.DataGridView()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Psy_Fig = New System.Windows.Forms.PictureBox()
+        Me.RH_txt = New System.Windows.Forms.TextBox()
+        Me.Tdb_txt = New System.Windows.Forms.TextBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.h_txt = New System.Windows.Forms.TextBox()
+        Me.rho_txt = New System.Windows.Forms.TextBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.W_txt = New System.Windows.Forms.TextBox()
+        Me.Tdp_txt = New System.Windows.Forms.TextBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Get_PsyProperties = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PropertiesTable, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.Psy_Fig, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -103,24 +119,15 @@ Partial Class Main
         Me.TabPage1.Text = "Fluid_Properties"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'TabPage2
+        'GetProperties
         '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1011, 539)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'PropertiesTable
-        '
-        Me.PropertiesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.PropertiesTable.Location = New System.Drawing.Point(25, 73)
-        Me.PropertiesTable.Name = "PropertiesTable"
-        Me.PropertiesTable.RowTemplate.Height = 24
-        Me.PropertiesTable.Size = New System.Drawing.Size(956, 210)
-        Me.PropertiesTable.TabIndex = 0
+        Me.GetProperties.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GetProperties.Location = New System.Drawing.Point(25, 439)
+        Me.GetProperties.Name = "GetProperties"
+        Me.GetProperties.Size = New System.Drawing.Size(956, 38)
+        Me.GetProperties.TabIndex = 34
+        Me.GetProperties.Text = "Get Properties"
+        Me.GetProperties.UseVisualStyleBackColor = True
         '
         'Sat_iV
         '
@@ -267,15 +274,172 @@ Partial Class Main
         Me.Label1.TabIndex = 18
         Me.Label1.Text = "Fluid :"
         '
-        'GetProperties
+        'PropertiesTable
         '
-        Me.GetProperties.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GetProperties.Location = New System.Drawing.Point(25, 439)
-        Me.GetProperties.Name = "GetProperties"
-        Me.GetProperties.Size = New System.Drawing.Size(956, 38)
-        Me.GetProperties.TabIndex = 34
-        Me.GetProperties.Text = "Get Properties"
-        Me.GetProperties.UseVisualStyleBackColor = True
+        Me.PropertiesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PropertiesTable.Location = New System.Drawing.Point(25, 73)
+        Me.PropertiesTable.Name = "PropertiesTable"
+        Me.PropertiesTable.RowTemplate.Height = 24
+        Me.PropertiesTable.Size = New System.Drawing.Size(956, 210)
+        Me.PropertiesTable.TabIndex = 0
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.Get_PsyProperties)
+        Me.TabPage2.Controls.Add(Me.h_txt)
+        Me.TabPage2.Controls.Add(Me.rho_txt)
+        Me.TabPage2.Controls.Add(Me.Label28)
+        Me.TabPage2.Controls.Add(Me.Label29)
+        Me.TabPage2.Controls.Add(Me.W_txt)
+        Me.TabPage2.Controls.Add(Me.Tdp_txt)
+        Me.TabPage2.Controls.Add(Me.Label26)
+        Me.TabPage2.Controls.Add(Me.Label27)
+        Me.TabPage2.Controls.Add(Me.RH_txt)
+        Me.TabPage2.Controls.Add(Me.Tdb_txt)
+        Me.TabPage2.Controls.Add(Me.Label25)
+        Me.TabPage2.Controls.Add(Me.Label24)
+        Me.TabPage2.Controls.Add(Me.Psy_Fig)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(1011, 539)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Psychrometric Chart"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Psy_Fig
+        '
+        Me.Psy_Fig.Image = Global.HT_Master.My.Resources.Resources.Psychrometric_Chart
+        Me.Psy_Fig.Location = New System.Drawing.Point(26, 29)
+        Me.Psy_Fig.Name = "Psy_Fig"
+        Me.Psy_Fig.Size = New System.Drawing.Size(623, 480)
+        Me.Psy_Fig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Psy_Fig.TabIndex = 0
+        Me.Psy_Fig.TabStop = False
+        '
+        'RH_txt
+        '
+        Me.RH_txt.Font = New System.Drawing.Font("PMingLiU", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.RH_txt.Location = New System.Drawing.Point(894, 88)
+        Me.RH_txt.Name = "RH_txt"
+        Me.RH_txt.Size = New System.Drawing.Size(100, 27)
+        Me.RH_txt.TabIndex = 9
+        Me.RH_txt.Text = "50"
+        '
+        'Tdb_txt
+        '
+        Me.Tdb_txt.Font = New System.Drawing.Font("PMingLiU", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Tdb_txt.Location = New System.Drawing.Point(894, 44)
+        Me.Tdb_txt.Name = "Tdb_txt"
+        Me.Tdb_txt.Size = New System.Drawing.Size(100, 27)
+        Me.Tdb_txt.TabIndex = 8
+        Me.Tdb_txt.Text = "27"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(664, 88)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(175, 23)
+        Me.Label25.TabIndex = 7
+        Me.Label25.Text = "Relative Humidity (%)"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(661, 42)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(214, 23)
+        Me.Label24.TabIndex = 6
+        Me.Label24.Text = "Dry Bulb Temperature (oC)"
+        '
+        'h_txt
+        '
+        Me.h_txt.Font = New System.Drawing.Font("PMingLiU", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.h_txt.Location = New System.Drawing.Point(897, 436)
+        Me.h_txt.Name = "h_txt"
+        Me.h_txt.ReadOnly = True
+        Me.h_txt.Size = New System.Drawing.Size(100, 27)
+        Me.h_txt.TabIndex = 21
+        '
+        'rho_txt
+        '
+        Me.rho_txt.Font = New System.Drawing.Font("PMingLiU", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.rho_txt.Location = New System.Drawing.Point(897, 392)
+        Me.rho_txt.Name = "rho_txt"
+        Me.rho_txt.ReadOnly = True
+        Me.rho_txt.Size = New System.Drawing.Size(100, 27)
+        Me.rho_txt.TabIndex = 20
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(664, 434)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(133, 23)
+        Me.Label28.TabIndex = 19
+        Me.Label28.Text = "Enthalpy (kJ/kg)"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label29.Location = New System.Drawing.Point(667, 390)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(144, 23)
+        Me.Label29.TabIndex = 18
+        Me.Label29.Text = "Density (kg/m^3)"
+        '
+        'W_txt
+        '
+        Me.W_txt.Font = New System.Drawing.Font("PMingLiU", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.W_txt.Location = New System.Drawing.Point(897, 341)
+        Me.W_txt.Name = "W_txt"
+        Me.W_txt.ReadOnly = True
+        Me.W_txt.Size = New System.Drawing.Size(100, 27)
+        Me.W_txt.TabIndex = 17
+        '
+        'Tdp_txt
+        '
+        Me.Tdp_txt.Font = New System.Drawing.Font("PMingLiU", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Tdp_txt.Location = New System.Drawing.Point(897, 287)
+        Me.Tdp_txt.Name = "Tdp_txt"
+        Me.Tdp_txt.ReadOnly = True
+        Me.Tdp_txt.Size = New System.Drawing.Size(100, 27)
+        Me.Tdp_txt.TabIndex = 16
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(664, 339)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(212, 23)
+        Me.Label26.TabIndex = 15
+        Me.Label26.Text = "Absolute Humidity (kg/kg)"
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(664, 291)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(227, 23)
+        Me.Label27.TabIndex = 14
+        Me.Label27.Text = "Dew Point Temperature (oC)"
+        '
+        'Get_PsyProperties
+        '
+        Me.Get_PsyProperties.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Get_PsyProperties.Location = New System.Drawing.Point(671, 168)
+        Me.Get_PsyProperties.Name = "Get_PsyProperties"
+        Me.Get_PsyProperties.Size = New System.Drawing.Size(322, 50)
+        Me.Get_PsyProperties.TabIndex = 22
+        Me.Get_PsyProperties.Text = "Get_Psy Properties"
+        Me.Get_PsyProperties.UseVisualStyleBackColor = True
         '
         'Main
         '
@@ -292,6 +456,9 @@ Partial Class Main
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.PropertiesTable, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        CType(Me.Psy_Fig, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -318,4 +485,18 @@ Partial Class Main
     Friend WithEvents Label1 As Label
     Friend WithEvents PropertiesTable As DataGridView
     Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents Psy_Fig As PictureBox
+    Friend WithEvents Get_PsyProperties As Button
+    Friend WithEvents h_txt As TextBox
+    Friend WithEvents rho_txt As TextBox
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents W_txt As TextBox
+    Friend WithEvents Tdp_txt As TextBox
+    Friend WithEvents Label26 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents RH_txt As TextBox
+    Friend WithEvents Tdb_txt As TextBox
+    Friend WithEvents Label25 As Label
+    Friend WithEvents Label24 As Label
 End Class
